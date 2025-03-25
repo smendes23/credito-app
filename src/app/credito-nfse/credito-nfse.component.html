@@ -1,0 +1,44 @@
+<div>
+  <h2>Consultar Créditos por NFSE</h2>
+  <input [(ngModel)]="numeroNfse" placeholder="Número NFSE">
+  <button (click)="consultar()">Consultar</button>
+
+  <div *ngIf="queryNotExists" class="no-data-message">
+    Creditos não encontrados!
+  </div>
+  <div *ngIf="creditos && creditos.length > 0">
+    <h3>Resultados:</h3>
+    <table *ngIf="!queryNotExists">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Número Crédito</th>
+        <th>Número NFSE</th>
+        <th>Data Constituição</th>
+        <th>Valor ISSQN</th>
+        <th>Tipo Crédito</th>
+        <th>Simples Nacional</th>
+        <th>Alíquota (%)</th>
+        <th>Valor Faturado</th>
+        <th>Valor Dedução</th>
+        <th>Base Cálculo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let credito of creditos">
+        <td>{{ credito.id }}</td>
+        <td>{{ credito.numeroCredito }}</td>
+        <td>{{ credito.numeroNfse }}</td>
+        <td>{{ credito.dataConstituicao }}</td>
+        <td>{{ credito.valorIssqn  }}</td>
+        <td>{{ credito.tipoCredito }}</td>
+        <td>{{ credito.simplesNacional ? 'Sim' : 'Não' }}</td>
+        <td>{{ credito.aliquota | number:'1.2-2' }}</td>
+        <td>{{ credito.valorFaturado  }}</td>
+        <td>{{ credito.valorDeducao  }}</td>
+        <td>{{ credito.baseCalculo  }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
